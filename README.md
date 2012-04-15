@@ -4,6 +4,7 @@ Ruby 1.9.2-p290 is assumed.  Change by editing the .rvmrc file.
 
 To get started evaluating, run:
 
+    $ bundle
     $ rake db:populate
     $ rails s
 
