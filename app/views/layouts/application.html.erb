@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SpikeCalendar</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script>
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        // put your options and callbacks here
+        events: {
+          url: '<%= events_url %>',
+          type: 'GET',
+          error: function() {
+            alert('there was an error while fetching events!');
+          },
+          color: 'navy',   // a non-ajax option
+          textColor: 'white' // a non-ajax option
+        }
+      })
+
+    });
+  </script>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
