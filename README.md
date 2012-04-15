@@ -4,3 +4,6 @@ To get started evaluating, run:
 
     $ rake db:populate
     $ rails s
+
+
+Then open your browser to http://localhost:3000
