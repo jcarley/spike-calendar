@@ -8,7 +8,13 @@
   <script>
     $(document).ready(function() {
       $('#calendar').fullCalendar({
-        // put your options and callbacks here
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'prevYear, nextYear'
+        },
+        editable: true,
+        weekMode: 'variable',
         events: {
           url: '<%= events_url %>',
           type: 'GET',
@@ -17,8 +23,31 @@
           },
           color: 'navy',   // a non-ajax option
           textColor: 'white' // a non-ajax option
+        },
+        dayClick: function(date, allDay, jsEvent, view) {
+          if (allDay) {
+            alert('Clicked on the entire day: ' + date);
+          }else{
+              alert('Clicked on the slot: ' + date);
+          }
+
+          alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+          alert('Current view: ' + view.name);
+
+          $(this).css('background-color', 'red');
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+          alert('Event: ' + calEvent.title);
+          alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+          alert('View: ' + view.name);
+
+          // change the border color just for fun
+          $(this).css('border-color', 'red');
+
+          return false;
         }
-      })
+      });
 
     });
   </script>
