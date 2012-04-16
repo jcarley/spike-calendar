@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   validates :title,   :presence => true,
                       :length => { :maximum => 50 }
 
-  validates :url,     :format => { :with => url_regex }
+  validates :url,     :allow_blank => true,
+                      :format => { :with => url_regex }
 
 end
