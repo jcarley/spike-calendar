@@ -28,6 +28,7 @@ class EventsController < ApplicationController
       #failed
       nil
     end
+
   end
 
   # GET: edit an event
