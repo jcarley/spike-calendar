@@ -23,35 +23,53 @@
           color: 'navy',   // a non-ajax option
           textColor: 'white' // a non-ajax option
         },
-        eventClick: function(calEvent, jsEvent, view) {
-          alert('Event: ' + calEvent.title);
-          alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-          alert('View: ' + view.name);
-
-          // change the border color just for fun
-          $(this).css('border-color', 'red');
-
-          return false;
-        },
-        dayClick: function(date, allDay, jsEvent, view) {
-          if (allDay) {
-            alert('Clicked on the entire day: ' + date);
-          }else{
-              alert('Clicked on the slot: ' + date);
-          }
-
-          alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-          alert('Current view: ' + view.name);
-
-          $(this).css('background-color', 'red');
-        }
+        dayClick: onDayClick,
+        eventClick: onEventClick
       });
 
     });
+
+    function onDayClick(date, allDay, jsEvent, view) {
+      <%#if (allDay) {%>
+        <%#alert('Clicked on the entire day: ' + date);%>
+      <%#}else{%>
+          <%#alert('Clicked on the slot: ' + date);%>
+      <%#}%>
+
+      <%#alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);%>
+
+      <%#alert('Current view: ' + view.name);%>
+
+      if(allDay) {
+        printMessage("Clicked on the entire day: " + date);
+      } else {
+        printMessage("Clicked on the slot: " + date);
+      }
+
+    }
+
+    function onEventClick(calEvent, jsEvent, view) {
+      <%#alert('Event: ' + calEvent.title);%>
+      <%#alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);%>
+      <%#alert('View: ' + view.name);%>
+
+      <%#// change the border color just for fun%>
+      <%#$(this).css('border-color', 'red');%>
+
+      <%#return false;%>
+      printMessage("Event: " + calEvent.title);
+      return false;
+    }
+
+    function printMessage(msg) {
+      $("#messages").text(msg);
+    }
   </script>
 </head>
 <body>
+
+<div id="messages">
+</div>
 
 <%= yield %>
 
