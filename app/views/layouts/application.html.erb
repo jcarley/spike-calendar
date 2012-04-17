@@ -4,9 +4,14 @@
   <title>SpikeCalendar</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%#<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>%>
   <%= csrf_meta_tags %>
   <script>
     $(document).ready(function() {
+      $("#dialog").dialog({
+        autoOpen: false
+      });
+
       $('#calendar').fullCalendar({
         header: {
           left: 'prev,next today',
@@ -46,6 +51,7 @@
         printMessage("Clicked on the slot: " + date);
       }
 
+      $("#dialog").dialog("open");
     }
 
     function onEventClick(calEvent, jsEvent, view) {
@@ -69,6 +75,10 @@
 <body>
 
 <div id="messages">
+</div>
+
+<div id="dialog" title="Basic dialog">
+  <p>This is a basic dialog</p>
 </div>
 
 <%= yield %>
